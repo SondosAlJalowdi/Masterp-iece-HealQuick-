@@ -43,8 +43,8 @@
                             <!-- Booking Date -->
                             <div class="mb-3">
                                 <label for="booking_date" class="form-label">Select Date</label>
-                                <input type="date" name="booking_date" id="booking_date" class="form-control"
-                                    required min="{{ now()->format('Y-m-d') }}">
+                                <input type="date" name="booking_date" id="booking_date" class="form-control" required
+                                    min="{{ now()->format('Y-m-d') }}">
                             </div>
 
                             <!-- Booking Time -->
@@ -112,7 +112,7 @@
         let employeeCount = 0;
 
         // Load organizations on service select
-        serviceSelect.addEventListener('change', function () {
+        serviceSelect.addEventListener('change', function() {
             const serviceId = this.value;
 
             orgSelect.innerHTML = '<option value="">Select an organization</option>';
@@ -188,6 +188,12 @@
 
         // On organization change, fetch price and employee info
         orgSelect.addEventListener('change', fetchPriceAndEmployee);
+
+        fetchPriceAndEmployee();
+
+        if (dateInput.value) {
+            updateTimeOptions();
+        }
 
         function fetchPriceAndEmployee() {
             const serviceId = serviceSelect.value;
@@ -299,6 +305,5 @@
                 onlinePaymentDetails.classList.add('d-none');
             }
         });
-
     </script>
 @endsection

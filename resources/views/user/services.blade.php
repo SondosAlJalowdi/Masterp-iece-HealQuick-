@@ -5,6 +5,7 @@
     .card {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
+        height: 100%;
     }
 
     .card:hover {
@@ -37,13 +38,16 @@
         height: 50px;
         object-fit: contain;
     }
+    .container {
+        max-width: 1300px;
+    }
 </style>
 
 <div class="container mt-5">
     <h2 class="text-center mb-5">Explore Our Services</h2>
-    <div class="row mx-auto">
+    <div class="row mx-auto mb-5 ">
         @foreach ($services as $service)
-        <div class="col-md-6 col-lg-4 mb-4">
+        <div class="col-md-3 mb-4">
             <div class="card">
                 @if($service->image)
                 <div class="service-img-wrapper">

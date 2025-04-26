@@ -33,6 +33,7 @@ class BookingWithLongWayController extends Controller
 
         // Get all bookings for this employee
         $bookings = Booking::where('employee_id', $employee->id)
+        ->where('organization_id', $organizationId)
         ->where('status', '!=', 'canceled')
         ->get();
 
@@ -83,7 +84,6 @@ class BookingWithLongWayController extends Controller
         // Get the price from the pivot table
         $service = Service::findOrFail($serviceId);
         $price = $service->organizations()->where('organization_id', $organizationId)->first()->pivot->price ?? 0;
-
         $booking = new Booking();
         $booking->user_id = auth()->id();
         $booking->organization_id = $organizationId;

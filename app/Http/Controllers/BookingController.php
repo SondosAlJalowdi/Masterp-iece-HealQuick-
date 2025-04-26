@@ -32,7 +32,6 @@ class BookingController extends Controller
         $bookings = Booking::where('organization_id', $organizationId)
             ->whereDate('booking_date', '>=', now())
             ->get();
-
         $bookedSlots = [];
 
         foreach ($bookings as $booking) {
@@ -54,29 +53,29 @@ class BookingController extends Controller
      * Get price and available employee for a selected service, organization, date, and time.
      */
 
-     public function getPriceAndAvailableEmployee($serviceId, $organizationId)
-     {
-         // Fetch the organization service for price
-         $organizationService = OrganizationService::where('service_id', $serviceId)
-             ->where('organization_id', $organizationId)
-             ->first();
+    public function getPriceAndAvailableEmployee($serviceId, $organizationId)
+    {
+        // Fetch the organization service for price
+        $organizationService = OrganizationService::where('service_id', $serviceId)
+            ->where('organization_id', $organizationId)
+            ->first();
 
-         if (!$organizationService) {
-             return response()->json(['error' => 'Service not found for this organization.'], 404);
-         }
+        if (!$organizationService) {
+            return response()->json(['error' => 'Service not found for this organization.'], 404);
+        }
 
-         // Get all employees of the organization
-         $employees = Employee::where('organization_id', $organizationId)->get();
+        // Get all employees of the organization
+        $employees = Employee::where('organization_id', $organizationId)->get();
 
-         if ($employees->isEmpty()) {
-             return response()->json(['error' => 'No employees found for this organization.'], 404);
-         }
+        if ($employees->isEmpty()) {
+            return response()->json(['error' => 'No employees found for this organization.'], 404);
+        }
 
-         return response()->json([
-             'price' => $organizationService->price,
-             'employee_count' => $employees->count(),
-         ]);
-     }
+        return response()->json([
+            'price' => $organizationService->price,
+            'employee_count' => $employees->count(),
+        ]);
+    }
 
 
     /**
