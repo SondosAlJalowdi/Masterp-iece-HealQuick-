@@ -66,13 +66,7 @@ public function reviews()
     return view('organization_admin.reviews.index', compact('reviews'));
 }
 
-public function employees()
-{
-    $organizationId = auth()->user()->organization->id;
-    $employees = Employee::where('organization_id', $organizationId)->latest()->get();
 
-    return view('organization_admin.employees.index', compact('employees'));
-}
 
 public function services()
 {

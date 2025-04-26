@@ -17,6 +17,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\ReviewAdminController;
 use App\Http\Controllers\Admin\ContactAdminController;
 use App\Http\Controllers\Organization_admin\OrgAdminController;
+use App\Http\Controllers\Organization_admin\OrgEmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,6 @@ Route::middleware(['auth', 'role:organization_admin'])->group(function () {
     Route::get('/org-dashboard', [OrgAdminController::class, 'orgDashboard'])->name('org.dashboard');
     Route::get('/org-bookings', [OrgAdminController::class, 'bookings'])->name('org.bookings.index');
     Route::get('/org-reviews', [OrgAdminController::class, 'reviews'])->name('org.reviews.index');
-    Route::get('/org-employees', [OrgAdminController::class, 'employees'])->name('org.employees.index');
+    Route::Resource('org-employees', OrgEmployeeController::class)->names('organization_admin.employees');
     Route::get('/org-services', [OrgAdminController::class, 'services'])->name('org.services.index');
 });

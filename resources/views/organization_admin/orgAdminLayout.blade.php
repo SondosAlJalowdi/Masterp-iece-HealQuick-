@@ -59,8 +59,8 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('org.employees.index') ? 'active' : '' }}">
-                        <a href="{{ route('org.employees.index') }}">
+                    <li class="{{ request()->routeIs('organization_admin.employees.index') ? 'active' : '' }}">
+                        <a href="{{ route('organization_admin.employees.index') }}">
                             <i class="pe-7s-user"></i>
                             <p>Employees </p>
                         </a>
@@ -81,12 +81,6 @@
                         <a href="{{ route('org.reviews.index') }}">
                             <i class="fa fa-star fa-3x"></i>
                             <p>Reviews</p>
-                        </a>
-                    </li>
-                    <li class="{{ request()->routeIs('contacts.index') ? 'active' : '' }}">
-                        <a href="{{ route('contacts.index') }}">
-                            <i class="fa fa-envelope fa-3x"></i>
-                            <p>Contacts</p>
                         </a>
                     </li>
 
