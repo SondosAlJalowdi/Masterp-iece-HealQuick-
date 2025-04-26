@@ -7,7 +7,18 @@
             <div class="row g-0">
                 <div class="col-md-4 p-0">
                     @if ($organization->logo)
-                        <img src="{{ asset($organization->logo) }}" alt="{{ $organization->name }} Logo"
+                        @php
+                            if (str_starts_with($organization->logo, 'storage/')) {
+                                $logoUrl = Storage::url(str_replace('storage/', '', $organization->logo));
+                            } elseif (file_exists(public_path($organization->logo))) {
+                                $logoUrl = asset($organization->logo);
+                            } elseif (filter_var($organization->logo, FILTER_VALIDATE_URL)) {
+                                $logoUrl = $organization->logo;
+                            } else {
+                                $logoUrl = Storage::url($organization->logo);
+                            }
+                        @endphp
+                        <img src="{{ $logoUrl }}" alt="{{ $organization->name }} Logo"
                             class="img-fluid h-100 w-100 object-fit-cover">
                     @else
                         <div class="h-100 d-flex align-items-center justify-content-center bg-light">

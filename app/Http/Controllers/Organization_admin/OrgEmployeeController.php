@@ -24,7 +24,7 @@ class OrgEmployeeController extends Controller
             });
         }
 
-        $employees = $query->latest()->paginate(10);
+        $employees = $query->latest()->paginate(4);
 
         return view('organization_admin.employees.index', compact('employees'));
     }

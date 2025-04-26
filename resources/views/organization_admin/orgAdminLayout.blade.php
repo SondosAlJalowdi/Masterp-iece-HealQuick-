@@ -65,14 +65,14 @@
                             <p>Employees </p>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('org.services.index') ? 'active' : '' }}">
-                        <a href="{{ route('org.services.index') }}">
+                    <li class="{{ request()->routeIs('organization_admin.services.index') ? 'active' : '' }}">
+                        <a href="{{ route('organization_admin.services.index') }}">
                             <i class="fa-solid fa-clipboard-list"></i>
                             <p>Services</p>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('org.bookings.index') ? 'active' : '' }}">
-                        <a href="{{ route('org.bookings.index') }}">
+                    <li class="{{ request()->routeIs('organization_admin.bookings.index') ? 'active' : '' }}">
+                        <a href="{{ route('organization_admin.bookings.index') }}">
                             <i class="fa fa-calendar-check-o fa-3x"></i>
                             <p>Bookings</p>
                         </a>
@@ -136,8 +136,8 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="{{ route('admin.profile') }}">
-                                    <p>Account</p>
+                                <a href="{{ route('organization_admin.profile') }}">
+                                    <p><i class="fa fa-user"></i> My Profile</p>
                                 </a>
                             </li>
                             {{-- <li class="dropdown">

@@ -47,44 +47,44 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="http://www.creative-tim.com" class="simple-text">
-                        <img src="{{asset('images/favicon.png')}}" alt="" width="20px" height="20px">
+                        <img src="{{ asset('images/favicon.png') }}" alt="" width="20px" height="20px">
                         HealQuick
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                        <a href="{{route('admin.dashboard')}}">
+                        <a href="{{ route('admin.dashboard') }}">
                             <i class="pe-7s-graph"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="{{request()->routeIs('users.index')? 'active' : ''}}">
-                        <a href="{{route('users.index')}}">
+                    <li class="{{ request()->routeIs('users.index') ? 'active' : '' }}">
+                        <a href="{{ route('users.index') }}">
                             <i class="pe-7s-user"></i>
                             <p>Users </p>
                         </a>
                     </li>
-                    <li class="{{request()->routeIs('organizations.index')? 'active' : ''}}">
-                        <a href="{{route('organizations.index')}}">
+                    <li class="{{ request()->routeIs('organizations.index') ? 'active' : '' }}">
+                        <a href="{{ route('organizations.index') }}">
                             <i class="fa-solid fa-building"></i>
                             <p>Organizations</p>
                         </a>
                     </li>
-                    <li class="{{request()->routeIs('bookings.index')? 'active' : ''}}">
-                        <a href="{{route('bookings.index')}}">
+                    <li class="{{ request()->routeIs('bookings.index') ? 'active' : '' }}">
+                        <a href="{{ route('bookings.index') }}">
                             <i class="fa fa-calendar-check-o fa-3x"></i>
                             <p>Bookings</p>
                         </a>
                     </li>
-                    <li class="{{request()->routeIs('admin-reviews.index')? 'active' : ''}}">
-                        <a href="{{route('admin-reviews.index')}}">
+                    <li class="{{ request()->routeIs('admin-reviews.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin-reviews.index') }}">
                             <i class="fa fa-star fa-3x"></i>
                             <p>Reviews</p>
                         </a>
                     </li>
-                    <li class="{{request()->routeIs('contacts.index')? 'active' : ''}}">
-                        <a href="{{route('contacts.index')}}">
+                    <li class="{{ request()->routeIs('contacts.index') ? 'active' : '' }}">
+                        <a href="{{ route('contacts.index') }}">
                             <i class="fa fa-envelope fa-3x"></i>
                             <p>Contacts</p>
                         </a>
@@ -105,7 +105,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{route('admin.dashboard')}}">Dashboard</a>
+                        <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         {{-- <ul class="nav navbar-nav navbar-left">
@@ -142,8 +142,8 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="{{route('admin.profile')}}">
-                                    <p>Account</p>
+                                <a href="{{ route('admin.profile') }}">
+                                    <p> <i class="fa fa-user"></i> My Profile</p>
                                 </a>
                             </li>
                             {{-- <li class="dropdown">
@@ -198,7 +198,7 @@
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 <!-- Inside <head> -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 <script src="assets/js/demo.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -206,4 +206,5 @@
 
 
 <script src="https://kit.fontawesome.com/5ab58071a0.js" crossorigin="anonymous"></script>
+
 </html>

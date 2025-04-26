@@ -17,7 +17,7 @@
                                 <a href="{{ route('organization_admin.employees.create') }}"
                                    class="btn btn-sm"
                                    style="background-color: #178666; color: #fff; border-radius: 3px; padding: 5px 12px;">
-                                    <i class="fa fa-plus" style="margin-right: 5px;"></i> Add New
+                                    <i class="fa-solid fa-user-plus" style="margin-right: 5px;"></i> Add New Employee
                                 </a>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                            value="{{ request('search') }}">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-sm" style="border-radius: 3px;">
+                                <button type="submit" class="btn btn-sm" style="background-color: #178666; color: white; border-radius: 3px;">
                                     <i class="fa fa-search" style="margin-right: 5px;"></i> Search
                                 </button>
                                 <a href="{{ route('organization_admin.employees.index') }}"
