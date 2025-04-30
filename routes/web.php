@@ -33,9 +33,6 @@ use App\Http\Controllers\Organization_admin\OrgBookingController;
 */
 
 
-
-
-
 Route::get('/', [UserPagesController::class, 'showLanding'])->name('landing');
 Route::get('/about', [UserPagesController::class, 'showAbout'])->name('about');
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
@@ -52,15 +49,13 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact.crea
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
-
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('organizations', OrganizationController::class);
     Route::resource('bookings', BookingAdminController::class);
     Route::get('admin-reviews', [ReviewAdminController::class, 'index'])->name('admin-reviews.index');
     Route::delete('admin/reviews/{review}', [ReviewAdminController::class, 'destroy'])->name('admin-reviews.destroy');
-    Route::patch('/bookings/{id}/status/{status}', [BookingAdminController::class, 'updateStatus'])
+    Route::patch('/admin-bookings/{id}/status/{status}', [BookingAdminController::class, 'updateStatus'])
         ->name('bookings.update-status');
     Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin-profile', [AdminController::class, 'showprofile'])->name('admin.profile');
