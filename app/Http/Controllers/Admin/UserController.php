@@ -12,10 +12,28 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.users.index', ['users' => User::with('organization')->paginate(6)]);
+        $query = User::with('organization');
+
+        // Apply search filter
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // Apply role filter
+        if ($role = $request->input('role')) {
+            $query->where('role', $role);
+        }
+
+        $users = $query->paginate(6);
+
+        return view('admin.users.index', compact('users'));
     }
+
 
     public function create()
     {
@@ -23,9 +41,9 @@ class UserController extends Controller
     }
 
     public function show(User $user)
-{
-    return view('admin.users.show', compact('user'));
-}
+    {
+        return view('admin.users.show', compact('user'));
+    }
 
     public function store(Request $request)
     {
@@ -52,7 +70,8 @@ class UserController extends Controller
             ]);
         }
 
-        return redirect()->route('users.index')->with('success', 'User Added successfully!');   }
+        return redirect()->route('users.index')->with('success', 'User Added successfully!');
+    }
 
     public function edit(User $user)
     {

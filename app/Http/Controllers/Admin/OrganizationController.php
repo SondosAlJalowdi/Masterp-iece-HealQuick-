@@ -18,7 +18,7 @@ class OrganizationController extends Controller
                   ->orWhere('address', 'like', "%$search%");
         }
 
-        $organizations = $query->paginate(3);
+        $organizations = $query->paginate(6);
 
         return view('admin.organizations.index', compact('organizations'));
     }
