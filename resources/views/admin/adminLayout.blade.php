@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset(path: 'images/favicon.png') }}" type="image/png">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -30,12 +30,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
 </head>
+<style>
 
+</style>
 
 <body>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="mycolor" data-image="assets/img/sidebar-6.jpg">
+        <div class="sidebar" data-color="mycolor" data-image="{{ asset('assets/img/sidebar6.jpg') }}">
 
             <!--
 
@@ -182,29 +184,32 @@
 
 </body>
 
-<!--   Core JS Files   -->
-<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<!-- Core JS Files -->
+<script src="{{ asset('assets/js/jquery.3.2.1.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 
-<!--  Charts Plugin -->
-<script src="assets/js/chartist.min.js"></script>
+<!-- Charts Plugin -->
+<script src="{{ asset('assets/js/chartist.min.js') }}"></script>
 
-<!--  Notifications Plugin    -->
-<script src="assets/js/bootstrap-notify.js"></script>
+<!-- Notifications Plugin -->
+<script src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
 
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Google Maps Plugin -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
-<!-- Inside <head> -->
+<!-- Light Bootstrap Dashboard Core -->
+<script src="{{ asset('assets/js/light-bootstrap-dashboard.js?v=1.4.0') }}"></script>
+
+<!-- Demo Scripts (Remove in production) -->
+<script src="{{ asset('assets/js/demo.js') }}"></script>
+
+<!-- CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
+
+<!-- Optional External Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 <script src="https://kit.fontawesome.com/5ab58071a0.js" crossorigin="anonymous"></script>
+
 
 </html>

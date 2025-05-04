@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('admin.users.index', ['users' => User::with('organization')->get()]);
+        return view('admin.users.index', ['users' => User::with('organization')->paginate(6)]);
     }
 
     public function create()

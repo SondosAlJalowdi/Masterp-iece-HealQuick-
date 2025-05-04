@@ -88,7 +88,7 @@
                             @endguest
                             @auth
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('user.profile') }}"><i class="fa-solid fa-user mr-1"></i></a>
+                                    <a class="nav-link" href="{{ route('user.profile') }}"><i class="fa-solid fa-user mr-1"></i>{{ auth()->user()->name }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-1"></i>Log Out</a>
