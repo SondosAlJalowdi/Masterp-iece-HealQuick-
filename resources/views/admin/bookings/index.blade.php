@@ -21,7 +21,7 @@
                                     <option value="">All Statuses</option>
                                     <option value="booked" {{ request()->status == 'booked' ? 'selected' : '' }}>Booked
                                     </option>
-                                    <option value="completed" {{ request()->status == 'completed' ? 'selected' : '' }} >
+                                    <option value="completed" {{ request()->status == 'completed' ? 'selected' : '' }}>
                                         Completed</option>
                                     <option value="canceled" {{ request()->status == 'canceled' ? 'selected' : '' }}>
                                         Canceled</option>
@@ -32,8 +32,8 @@
                                 <input type="date" name="date" class="form-control" value="{{ request()->date }}">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-search"></i> Filter
+                            <button type="submit" class="btn" style="background-color: #178066; color: white;">
+                                <i class="fa fa-filter"></i> Filter
                             </button>
 
                             <a href="{{ route('bookings.index') }}" class="btn btn-default">
@@ -48,9 +48,9 @@
                         <div class="row">
                             @forelse($bookings as $booking)
                                 <div class="col-sm-6 col-md-4">
-                                    <div class="panel panel-info">
+                                    <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title">
+                                            <h4 class="panel-title"  >
                                                 Booking #{{ $booking->id }}
                                             </h4>
                                         </div>
@@ -79,14 +79,7 @@
                                                 class="btn btn-xs btn-warning">
                                                 <i class="fa fa-pencil"></i> Edit
                                             </a>
-                                            <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
-                                                style="display:inline;">
-                                                @csrf @method('DELETE')
-                                                <button class="btn btn-xs btn-danger"
-                                                    onclick="return confirm('Are you sure?')">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </button>
-                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -102,18 +95,37 @@
         </div>
 
         <!-- Pagination Outside the Container -->
-        <div class="text-center">
-            @if ($bookings->lastPage() > 1)
-    <ul class="pagination">
-        @foreach ($bookings->getUrlRange(1, $bookings->lastPage()) as $page => $url)
-            <li class="page-item {{ ($bookings->currentPage() == $page) ? 'active' : '' }}">
-                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-            </li>
-        @endforeach
-    </ul>
-@endif
-
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        {{ $bookings->appends(request()->query())->onEachSide(1)->links('pagination::bootstrap-4') }}
+                    </ul>
+                </nav>
+            </div>
         </div>
-
+        </div>
     </div>
+    <style>
+           /* Pagination Styles */
+           .page-item.active .page-link {
+            background: linear-gradient(135deg, #178066 0%, #1aa384 100%);
+            border-color: transparent;
+            color: white;
+        }
+
+        .page-link {
+            color: #178066;
+            margin: 0 5px;
+            border-radius: 8px !important;
+            border: 1px solid #eaeaea;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover {
+            color: #126652;
+            border-color: #d1d9e6;
+        }
+
+    </style>
 @endsection

@@ -14,31 +14,47 @@
     <title> HealQuick </title>
 
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
-   <!-- Bootstrap core CSS -->
-<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
 
-<!-- Fonts style -->
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-<!-- Owl slider stylesheet -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- Owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
-<!-- Font Awesome style -->
-<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+    <!-- Font Awesome style -->
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
 
-<!-- Custom styles for this template -->
-<link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
 
-<!-- Responsive style -->
-<link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+    <!-- Responsive style -->
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+    <style>
+        .active-link {
+            position: relative;
+        }
 
+        .active-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            /* or your primary color */
+        }
+    </style>
 </head>
 
 <body>
     <header class="header_section" style="background: #178066">
         <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{{route('landing')}}">
+                <a class="navbar-brand" href="{{ route('landing') }}">
                     <span>
                         HealQuick
                     </span>
@@ -52,40 +68,53 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('landing') }}">Home <span
-                                    class="sr-only">(current)</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('landing') ? 'active-link' : '' }}"
+                                href="{{ route('landing') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                            <a class="nav-link {{ request()->routeIs('about') ? 'active-link' : '' }}"
+                                href="{{ route('about') }}">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('services') }}">Services</a>
+                            <a class="nav-link {{ request()->routeIs('services') ? 'active-link' : '' }}"
+                                href="{{ route('services') }}">Services</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('organizations') }}">Organizations</a>
-                        </li> --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('contact.create')}}">Contact Us</a>
+                            <a class="nav-link {{ request()->routeIs('contact.create') ? 'active-link' : '' }}"
+                                href="{{ route('contact.create') }}">Contact Us</a>
                         </li>
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('registration') }}"><i class="fa-solid fa-user-plus mr-1"></i> Sign up</a>
+                                <a class="nav-link {{ request()->routeIs('registration') ? 'active-link' : '' }}"
+                                    href="{{ route('registration') }}">
+                                    <i class="fa-solid fa-user-plus mr-1"></i> Sign up
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><i class="fa-solid fa-right-to-bracket mr-1"></i> Login</a>
+                                <a class="nav-link {{ request()->routeIs('login') ? 'active-link' : '' }}"
+                                    href="{{ route('login') }}">
+                                    <i class="fa-solid fa-right-to-bracket mr-1"></i> Login
+                                </a>
                             </li>
                         @endguest
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.profile') }}"><i class="fa-solid fa-user mr-1"></i>{{ auth()->user()->name }}</a>
+                                <a class="nav-link {{ request()->routeIs('user.profile') ? 'active-link' : '' }}"
+                                    href="{{ route('user.profile') }}">
+                                    <i class="fa-solid fa-user mr-1"></i>
+                                    {{ explode(' ', auth()->user()->name)[0] }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket mr-1"></i>Log Out</a>
+                                <a class="nav-link" href="{{ route('logout') }}">
+                                    <i class="fa-solid fa-right-from-bracket mr-1"></i>Log Out
+                                </a>
                             </li>
                         @endauth
                     </ul>
                 </div>
+
             </nav>
         </div>
     </header>
@@ -141,11 +170,12 @@
                 <div class="col-md-6 col-lg-2">
                     <h5 class="mb-3">Quick Links</h5>
                     <ul class="">
-                        <li><a href="index.html" class="text-white text-decoration-none">Home</a></li>
-                        <li><a href="about.html" class="text-white text-decoration-none">About</a></li>
-                        <li><a href="departments.html" class="text-white text-decoration-none">Organizations</a></li>
-                        <li><a href="doctors.html" class="text-white text-decoration-none">Doctors</a></li>
-                        <li><a href="contact.html" class="text-white text-decoration-none">Contact Us</a></li>
+                        <li><a href="{{ route('landing') }}" class="text-white text-decoration-none">Home</a></li>
+                        <li><a href="{{ route('about') }}" class="text-white text-decoration-none">About</a></li>
+                        <li><a href="{{ route('services') }}" class="text-white text-decoration-none">Services</a>
+                        </li>
+                        <li><a href="{{ route('contact.create') }}" class="text-white text-decoration-none">Contact
+                                Us</a></li>
                     </ul>
                 </div>
             </div>

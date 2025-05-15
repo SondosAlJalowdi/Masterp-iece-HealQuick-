@@ -182,8 +182,6 @@
                                     </div>
                                 @endforeach
                             </div>
-
-                            <!-- Pagination -->
                             <!-- Pagination -->
                             <div class="row">
                                 <div class="col-md-12">

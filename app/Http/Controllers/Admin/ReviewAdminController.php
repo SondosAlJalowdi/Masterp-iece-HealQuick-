@@ -13,16 +13,29 @@ class ReviewAdminController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $reviews = Review::with(['user', 'service'])
-            ->whereHas('user', function ($query) {
-                $query->whereNull('deleted_at');
-            })
-            ->latest()
-            ->paginate(10);
+        $query = Review::with(['user', 'service']);
 
-        return view('admin.reviews.index', compact('reviews'));
+        if ($request->filled('service_id')) {
+            $query->where('service_id', $request->service_id);
+        }
+
+        if ($request->filled('rating')) {
+            $query->where('rating', $request->rating);
+        }
+
+        if ($request->filled('user')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->user . '%');
+            });
+        }
+
+        $reviews = $query->latest()->paginate(6)->appends($request->query());
+
+        $services = Service::all(); // Pass to Blade for dropdown
+
+        return view('admin.reviews.index', compact('reviews', 'services'));
     }
 
 

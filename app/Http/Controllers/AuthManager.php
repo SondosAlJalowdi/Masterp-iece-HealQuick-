@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session as FacadesSession;
+
 class AuthManager extends Controller
 {
     function login()
@@ -36,7 +37,7 @@ class AuthManager extends Controller
                 return redirect()->route('org.dashboard');
             } else if ($user->role === 'patient') {
                 return redirect()->intended();
-            }else{
+            } else {
                 return redirect()->route('user.index');
             }
         }
@@ -46,12 +47,13 @@ class AuthManager extends Controller
     function registrationPost(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'phone_number'=> 'required|string',
-            'address'=>'required|string',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|string|min:4',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:6',
+            'phone_number' => ['required', 'regex:/^07[7-9][0-9]{7}$/'],
+            'address' => 'required|string',
         ]);
+
 
         $data['name'] = $request->name;
         $data['email'] = $request->email;
@@ -70,6 +72,4 @@ class AuthManager extends Controller
         FacadesSession::flush();
         return redirect(route('login'));
     }
-
-
 }

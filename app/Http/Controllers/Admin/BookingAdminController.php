@@ -40,7 +40,11 @@ class BookingAdminController extends Controller
             });
         }
 
-        $bookings = $query->paginate(3);
+
+        if ($request->filled('date')) {
+            $query->whereDate('booking_date', $request->date);
+        }
+        $bookings = $query->paginate(3)->appends($request->query());
 
         $users = User::all();
         $services = Service::all();
@@ -48,6 +52,7 @@ class BookingAdminController extends Controller
 
         return view('admin.bookings.index', compact('bookings', 'users', 'services', 'organizations'));
     }
+
 
     public function show(Booking $booking)
     {

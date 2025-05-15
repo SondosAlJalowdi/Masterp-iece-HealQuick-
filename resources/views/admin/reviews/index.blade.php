@@ -1,7 +1,7 @@
 @extends('admin.adminLayout')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -9,15 +9,6 @@
                     <h3 class="panel-title pull-left" style="padding-top: 7.5px; font-weight: 600; color: #555;">
                         <i class="fa fa-comments" style="color: #6c757d;"></i> Customer Reviews
                     </h3>
-                    <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-cog"></i> Options <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-download"></i> Export</a></li>
-                            <li><a href="#"><i class="fa fa-filter"></i> Filter</a></li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="panel-body" style="padding: 20px;">
                     @if(session('success'))
@@ -30,6 +21,42 @@
                     @endif
 
                     @if($reviews->count())
+                    <form method="GET" action="{{ route('admin-reviews.index') }}" class="form-inline" style="margin-bottom: 20px;">
+                        <div class="form-group">
+                            <select name="service_id" class="form-control" style="min-width: 150px;">
+                                <option value="">All Services</option>
+                                @foreach($services as $service)
+                                    <option value="{{ $service->id }}" {{ request('service_id') == $service->id ? 'selected' : '' }}>
+                                        {{ $service->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-left: 10px;">
+                            <select name="rating" class="form-control" style="min-width: 150px;">
+                                <option value="">All Ratings</option>
+                                @for($i = 5; $i >= 1; $i--)
+                                    <option value="{{ $i }}" {{ request('rating') == $i ? 'selected' : '' }}>
+                                        {{ $i }} Stars
+                                    </option>
+                                @endfor
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-left: 10px;">
+                            <input type="text" name="user" value="{{ request('user') }}" class="form-control" placeholder="User name">
+                        </div>
+
+                        <button type="submit" class="btn" style="margin-left: 10px; background-color: #178066; color: white;">
+                            <i class="fa fa-filter"></i> Filter
+                        </button>
+
+                        <a href="{{ route('admin-reviews.index') }}" class="btn btn-default" style="margin-left: 5px;">
+                            Reset
+                        </a>
+                    </form>
+
                         <div class="row">
                             @foreach($reviews as $review)
                             <div class="col-md-6">
