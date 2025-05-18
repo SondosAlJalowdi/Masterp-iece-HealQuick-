@@ -125,11 +125,17 @@
                                                 class="btn btn-outline-primary btn-sm mr-2">
                                                 Details
                                             </a>
-                                            <a href="{{ route('completeBooking', ['serviceId' => $service->id, 'organizationId' => $organization->id]) }}"
-                                                class="btn text-white btn-sm" style="background-color: #178066">
-                                                Book Appointment
-                                            </a>
+
+                                            @if ($organization->all_employees_inactive)
+                                                <button class="btn btn-secondary btn-sm" disabled>Unavailable</button>
+                                            @else
+                                                <a href="{{ route('completeBooking', ['serviceId' => $service->id, 'organizationId' => $organization->id]) }}"
+                                                    class="btn text-white btn-sm" style="background-color: #178066">
+                                                    Book Appointment
+                                                </a>
+                                            @endif
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

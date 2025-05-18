@@ -39,9 +39,14 @@ class BookingWithLongWayController extends Controller
 
         // Group booked slots by date
         $bookedSlots = [];
+        $today = now()->toDateString();
+        $currentTime = now()->format('H:i');
         foreach ($bookings as $booking) {
             $date = $booking->booking_date;
             $time = \Carbon\Carbon::parse($booking->booking_time)->format('H:i');
+            if ($date === $today && $time <= $currentTime) {
+                continue;
+            }
             $bookedSlots[$date][] = $time;
         }
 

@@ -129,28 +129,29 @@
                     <ul class="list-unstyled">
                         <li class="mb-2">
                             <i class="fa fa-map-marker me-2"></i>
-                            <span>Location</span>
+                            <span>Amman, Jordan</span>
                         </li>
                         <li class="mb-2">
-                            <i class="fa fa-phone me-2"></i>
-                            <span>+01 1234567890</span>
+                            <i class="fa fa-mobile me-2"></i>
+                            <span>077 865 3663</span>
                         </li>
                         <li class="mb-2">
                             <i class="fa fa-envelope me-2"></i>
-                            <span>demo@gmail.com</span>
+                            <span>sondosjalowdi@gmail.com</span>
                         </li>
                     </ul>
                     <div class="footer_social">
-                        <a href="">
+                        <a href="https://wa.me/962778653663?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20your%20services" target="_blank">
+                            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="#">
                             <i class="fa fa-facebook" aria-hidden="true"></i>
                         </a>
-                        <a href="">
-                            <i class="fa fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="">
+                        <a href="https://www.linkedin.com/in/sondos-a-321398253/" target="_blank">
                             <i class="fa fa-linkedin" aria-hidden="true"></i>
                         </a>
-                        <a href="">
+                        <a href="#">
                             <i class="fa fa-instagram" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -184,7 +185,7 @@
             <div class="text-center mt-4 border-top pt-3 small">
                 <p class="mb-0">
                     &copy; <span id="displayYear"></span> All Rights Reserved by
-                    <a href="https://html.design/" class="text-white fw-bold text-decoration-underline">Sondos Al
+                    <a href="#" class="text-white fw-bold text-decoration-underline">Sondos Al
                         Jalowdi</a>
                 </p>
             </div>

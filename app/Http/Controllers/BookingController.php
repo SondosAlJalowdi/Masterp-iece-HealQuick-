@@ -30,13 +30,22 @@ class BookingController extends Controller
     public function getBookedSlots($serviceId, $organizationId)
     {
         $bookings = Booking::where('organization_id', $organizationId)
+            ->where('status', '!=', 'canceled') // Exclude canceled
             ->whereDate('booking_date', '>=', now())
             ->get();
+
         $bookedSlots = [];
+        $today = now()->toDateString();
+        $currentTime = now()->format('H:i');
 
         foreach ($bookings as $booking) {
             $date = $booking->booking_date;
             $time = \Carbon\Carbon::parse($booking->booking_time)->format('H:i');
+
+            // Skip past time slots if the date is today
+            if ($date === $today && $time <= $currentTime) {
+                continue;
+            }
 
             if (!isset($bookedSlots[$date])) {
                 $bookedSlots[$date] = [];

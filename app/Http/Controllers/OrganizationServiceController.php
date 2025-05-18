@@ -60,6 +60,11 @@ class OrganizationServiceController extends Controller
             $organization->average_rating = \App\Models\Review::where('service_id', $service->id)
                 ->where('organization_id', $organization->id)
                 ->avg('rating');
+
+            $totalEmployees = $organization->employees()->count();
+            $inactiveEmployees = $organization->employees()->where('status', 'inactive')->count();
+
+            $organization->all_employees_inactive = ($totalEmployees > 0 && $inactiveEmployees === $totalEmployees);
         }
 
         return view('user.providers', compact('service', 'organizations'));

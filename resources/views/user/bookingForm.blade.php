@@ -234,30 +234,42 @@
             fetch(`/get-booked-slots/${serviceSelect.value}/${orgId}`)
                 .then(res => res.json())
                 .then(data => {
-                    const bookedSlotsForDate = data[selectedDate] || [];
-                    const fullyBookedTimes = [];
+                        const bookedSlotsForDate = data[selectedDate] || [];
+                        const fullyBookedTimes = [];
 
-                    // Count bookings per time slot
-                    const bookingCounts = {};
-                    bookedSlotsForDate.forEach(time => {
-                        bookingCounts[time] = (bookingCounts[time] || 0) + 1;
-                    });
+                        // Count bookings per time slot
+                        const bookingCounts = {};
+                        bookedSlotsForDate.forEach(time => {
+                            bookingCounts[time] = (bookingCounts[time] || 0) + 1;
+                        });
 
-                    // Find times where all employees are booked
-                    for (const [time, count] of Object.entries(bookingCounts)) {
-                        if (count >= employeeCount) {
-                            fullyBookedTimes.push(time);
+                        // Find times where all employees are booked
+                        for (const [time, count] of Object.entries(bookingCounts)) {
+                            if (count >= employeeCount) {
+                                fullyBookedTimes.push(time);
+                            }
                         }
-                    }
 
-                    // Disable fully booked times
-                    timeSelect.querySelectorAll('option').forEach(option => {
-                        if (option.value && fullyBookedTimes.includes(option.value)) {
-                            option.disabled = true;
-                            option.style.color = '#999';
-                            option.textContent += ' (Fully booked)';
-                        }
-                    });
+                        // Disable fully booked times
+                        timeSelect.querySelectorAll('option').forEach(option => {
+                                if (option.value && fullyBookedTimes.includes(option.value)) {
+                                    option.disabled = true;
+                                    option.style.color = '#999';
+                                    option.textContent += ' (Fully booked)';
+                                }
+                            else if (new Date(dateInput.value).toDateString() === new Date().toDateString()) {
+                                const now = new Date();
+                                const [hour, minute] = option.value.split(':');
+                                const optionTime = new Date(now);
+                                optionTime.setHours(hour, minute, 0, 0);
+                                if (optionTime <= now) {
+                                    option.disabled = true;
+                                    option.style.color = '#999';
+                                    option.textContent += ' (Past time)';
+                                }
+                            }
+
+                        });
 
                     // Enable/disable submit button based on availability
                     const hasAvailableSlots = Array.from(timeSelect.options).some(
@@ -272,9 +284,9 @@
                         timeSlotInfo.style.color = '';
                     }
                 })
-                .catch(err => {
-                    console.error("Error fetching booked slots:", err);
-                });
+        .catch(err => {
+            console.error("Error fetching booked slots:", err);
+        });
         }
 
         function resetForm() {

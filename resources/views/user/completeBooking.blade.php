@@ -37,8 +37,8 @@
                             <!-- Booking Date -->
                             <div class="mb-3">
                                 <label for="booking_date" class="form-label">Select Date</label>
-                                <input type="date" name="booking_date" id="booking_date" class="form-control"
-                                    required min="{{ now()->format('Y-m-d') }}">
+                                <input type="date" name="booking_date" id="booking_date" class="form-control" required
+                                    min="{{ now()->format('Y-m-d') }}">
                             </div>
 
                             <!-- Booking Time -->
@@ -140,15 +140,33 @@
                 const option = document.createElement('option');
                 option.value = time;
                 option.textContent = time;
+
                 if (booked.includes(time)) {
                     option.disabled = true;
                     option.style.color = '#999';
                     option.textContent += ' (Booked)';
+                } else if (new Date(dateInput.value).toDateString() === new Date().toDateString()) {
+                    const now = new Date();
+                    const [hour, minute] = option.value.split(':');
+                    const optionTime = new Date(now);
+                    optionTime.setHours(hour, minute, 0, 0);
+
+                    if (optionTime <= now) {
+                        option.disabled = true;
+                        option.style.color = '#999';
+                        option.textContent += ' (Past time)';
+                    } else {
+                        // This time slot is available on today’s date and NOT past time
+                        availableCount++;
+                    }
                 } else {
+                    // Date is not today and slot is not booked, so available
                     availableCount++;
                 }
+
                 timeSelect.appendChild(option);
             });
+
 
             timeSelect.disabled = false;
 
@@ -172,7 +190,7 @@
         }
 
         // Toggle online payment details visibility based on selected payment method
-        paymentMethodSelect.addEventListener('change', function () {
+        paymentMethodSelect.addEventListener('change', function() {
             if (this.value === 'online') {
                 onlinePaymentDetails.classList.remove('d-none');
             } else {
@@ -180,5 +198,4 @@
             }
         });
     </script>
-
 @endsection
