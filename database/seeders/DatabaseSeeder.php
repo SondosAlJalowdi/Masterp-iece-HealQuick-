@@ -24,5 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OrganizationServiceSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ReviewSeeder::class);
+        $this->call([
+            OrganizationDescriptionsSeeder::class,
+        ]);
     }
 }

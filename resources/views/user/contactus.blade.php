@@ -48,7 +48,7 @@
             <li class="mb-3"><i class="fa fa-map-marker text-primary mr-2"></i>Amman, Jordan</li>
             <li class="mb-3"><i class="fa fa-phone text-primary mr-2"></i>077 865 3663</li>
             <li class="mb-3"><i class="fa fa-envelope text-primary mr-2"></i>sondosjalowdi@gmail.com</li>
-            <li class="mb-3"><i class="fa fa-clock-o text-primary mr-2"></i> Sun - Thu: 9:00 AM - 5:00 PM</li>
+            <li class="mb-3"><i class="fa fa-clock-o text-primary mr-2"></i> 24/7 Support</li>
           </ul>
           <h5 class="mt-4 mb-3">Follow Us</h5>
           <div>
